@@ -240,7 +240,11 @@ void ics2115_init(void (*cpu_irq_cb)(INT32), UINT8 *sample_rom, INT32 sample_rom
 
 	output_sample_rate = nBurnSoundRate;
 	if (output_sample_rate == 0)
+#if !defined(SF2000)
 		output_sample_rate = 44100;
+#else
+		output_sample_rate = 11025;
+#endif
 	else
 		buffer = (INT32*)(BurnMalloc(output_sample_rate /*/ 50*/ * 2 * sizeof(INT32)));
 

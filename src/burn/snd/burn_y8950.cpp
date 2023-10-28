@@ -291,7 +291,11 @@ INT32 BurnY8950Init(INT32 num, INT32 nClockFrequency, UINT8* Y8950ADPCM0ROM, INT
 		BurnY8950Update = Y8950UpdateNormal;
 	}
 
+#if !defined(SF2000)
 	if (!nBurnY8950SoundRate) nBurnY8950SoundRate = 44100;
+#else
+	if (!nBurnY8950SoundRate) nBurnY8950SoundRate = 11025;
+#endif
 
 	Y8950Init(num, nClockFrequency, nBurnY8950SoundRate);
 	Y8950SetIRQHandler(0, IRQCallback, 0);

@@ -249,7 +249,11 @@ INT32 BurnYM3526Init(INT32 nClockFrequency, OPL_IRQHANDLER IRQCallback, INT32 (*
 		BurnYM3526Update = YM3526UpdateNormal;
 	}
 
+#if !defined(SF2000)
 	if (!nBurnYM3526SoundRate) nBurnYM3526SoundRate = 44100;
+#else
+	if (!nBurnYM3526SoundRate) nBurnYM3526SoundRate = 11025;
+#endif
 
 	YM3526Init(1, nClockFrequency, nBurnYM3526SoundRate);
 	YM3526SetIRQHandler(0, IRQCallback, 0);

@@ -70,13 +70,24 @@ V60_CPU_DIR				:= $(FBNEO_CPU_DIR)/v60
 Z180_CPU_DIR			:= $(FBNEO_CPU_DIR)/z180
 Z80_CPU_DIR				:= $(FBNEO_CPU_DIR)/z80
 
-BURN_BLACKLIST := $(ADSP2100_CPU_DIR)/2100ops.c \
-	$(ADSP2100_CPU_DIR)/2100dasm.cpp \
-	$(ARM7_CPU_DIR)/arm7exec.c \
+BURN_BLACKLIST := \
+	$(FBNEO_CPU_DIR)/adsp2100_intf.cpp \
+	$(ADSP2100_CPU_DIR)/2100ops.c \
+	$(ADSP2100_CPU_DIR)/2100.cpp \
+	$(ADSP2100_CPU_DIR)/adsp2100.cpp \
+	$(FBNEO_CPU_DIR)/arm_intf.cpp \
+	$(ARM_CPU_DIR)/arm.cpp \
+	$(FBNEO_CPU_DIR)/arm7_intf.cpp \
+	$(ARM7_CPU_DIR)/arm7.cpp \
 	$(ARM7_CPU_DIR)/arm7core.c \
+	$(ARM7_CPU_DIR)/arm7exec.c \
+	$(E132XS_CPU_DIR)/e132xs.cpp \
+	$(E132XS_CPU_DIR)/e132xs.cpp \
+	$(F8_CPU_DIR)/f8.cpp \
 	$(H6280_CPU_DIR)/tblh6280.c \
 	$(HD6309_CPU_DIR)/6309tbl.c \
 	$(HD6309_CPU_DIR)/6309ops.c \
+	$(I386_CPU_DIR)/i386.cpp \
 	$(I386_CPU_DIR)/i386dasm.c \
 	$(I386_CPU_DIR)/i386op16.c \
 	$(I386_CPU_DIR)/i386op32.c \
@@ -84,23 +95,52 @@ BURN_BLACKLIST := $(ADSP2100_CPU_DIR)/2100ops.c \
 	$(I386_CPU_DIR)/i486ops.c \
 	$(I386_CPU_DIR)/pentops.c \
 	$(I386_CPU_DIR)/x87ops.c \
-	$(M6502_CPU_DIR)/t65sc02.c \
+	$(I8051_CPU_DIR)/mcs51ops.c \
+	$(I8X41_CPU_DIR)/8x41dasm.c \
+	$(KONAMI_CPU_DIR)/konami.cpp \
+	$(KONAMI_CPU_DIR)/konamops.c \
+	$(KONAMI_CPU_DIR)/konamtbl.c \
+	$(M377_CPU_DIR)/m37710.cpp \
+	$(M6502_CPU_DIR)/t6502.c \
 	$(M6502_CPU_DIR)/t65c02.c \
+	$(M6502_CPU_DIR)/t65sc02.c \
 	$(M6502_CPU_DIR)/tdeco16.c \
 	$(M6502_CPU_DIR)/tn2a03.c \
-	$(M6502_CPU_DIR)/t6502.c \
+	$(FBNEO_CPU_DIR)/mips3_intf.cpp \
+	$(M6800_CPU_DIR)/6800ops.c \
+	$(M6800_CPU_DIR)/6800tbl.c \
+	$(M6805_CPU_DIR)/6805ops.c \
+	$(M6809_CPU_DIR)/6809ops.c \
+	$(M6809_CPU_DIR)/6809tbl.c \
 	$(M68K_CPU_DIR)/m68k_in.c \
 	$(M68K_CPU_DIR)/m68kmake.c \
 	$(M68K_CPU_DIR)/m68kfpu.c \
 	$(M68K_CPU_DIR)/m68kdasm.c \
+	$(MIPS3_CPU_DIR)/cop0.cpp \
+	$(MIPS3_CPU_DIR)/cop1.cpp \
+	$(MIPS3_CPU_DIR)/mips3.cpp \
 	$(MIPS3_CPU_DIR)/mips3_dasm.cpp \
+	$(MIPS3_X64_DRC_CPU_DIR)/mips3_x64.cpp \
 	$(NEC_CPU_DIR)/v25sfr.c \
 	$(NEC_CPU_DIR)/v25instr.c \
 	$(NEC_CPU_DIR)/necinstr.c \
+	$(FBNEO_CPU_DIR)/pic16c5x_intf.cpp \
+	$(PIC16C5X_CPU_DIR)/pic16c5x.cpp \
+	$(SH2_CPU_DIR)/sh2.cpp \
+	$(SH4_CPU_DIR)/sh4.cpp \
+	$(TLCS900_CPU_DIR)/900tbl.c \
+	$(TLCS900_CPU_DIR)/tlcs900.cpp \
+	$(FBNEO_CPU_DIR)/tms34010_intf.cpp \
 	$(TMS34010_CPU_DIR)/34010fld.c \
 	$(TMS34010_CPU_DIR)/34010gfx.c \
 	$(TMS34010_CPU_DIR)/34010ops.c \
 	$(TMS34010_CPU_DIR)/34010tbl.c \
+	$(UPD7725_CPU_DIR)/upd7725.cpp \
+	$(UPD7810_CPU_DIR)/7810dasm.c \
+	$(UPD7810_CPU_DIR)/7810ops.c \
+	$(UPD7810_CPU_DIR)/7810tbl.c \
+	$(UPD7810_CPU_DIR)/upd7810.cpp \
+	$(V60_CPU_DIR)/v60.cpp \
 	$(V60_CPU_DIR)/am.c \
 	$(V60_CPU_DIR)/am1.c \
 	$(V60_CPU_DIR)/am2.c \
@@ -115,25 +155,13 @@ BURN_BLACKLIST := $(ADSP2100_CPU_DIR)/2100ops.c \
 	$(V60_CPU_DIR)/optable.c \
 	$(V60_CPU_DIR)/v60d.c \
 	$(V60_CPU_DIR)/v60mem.c \
-	$(KONAMI_CPU_DIR)/konamtbl.c \
-	$(KONAMI_CPU_DIR)/konamops.c \
-	$(M6800_CPU_DIR)/6800ops.c \
-	$(M6800_CPU_DIR)/6800tbl.c \
-	$(M6805_CPU_DIR)/6805ops.c \
-	$(M6809_CPU_DIR)/6809ops.c \
-	$(M6809_CPU_DIR)/6809tbl.c \
-	$(FBNEO_CPU_DIR)/tms34010_intf.cpp \
-	$(I8051_CPU_DIR)/mcs51ops.c \
-	$(UPD7810_CPU_DIR)/7810ops.c \
-	$(UPD7810_CPU_DIR)/7810tbl.c \
-	$(I8X41_CPU_DIR)/8x41dasm.c \
+	$(Z180_CPU_DIR)/z180.cpp \
 	$(Z180_CPU_DIR)/z180xy.c \
 	$(Z180_CPU_DIR)/z180fd.c \
 	$(Z180_CPU_DIR)/z180op.c \
 	$(Z180_CPU_DIR)/z180ed.c \
 	$(Z180_CPU_DIR)/z180dd.c \
 	$(Z180_CPU_DIR)/z180cb.c \
-	$(TLCS900_CPU_DIR)/900tbl.c \
 	$(FBNEO_BURNER_DIR)/wave_writer.cpp \
 	$(FBNEO_BURNER_DIR)/sshot.cpp \
 	$(FBNEO_BURNER_DIR)/cong.cpp \
@@ -145,8 +173,6 @@ BURN_BLACKLIST := $(ADSP2100_CPU_DIR)/2100ops.c \
 	$(FBNEO_BURNER_DIR)/dynhuff.cpp \
 	$(FBNEO_BURNER_DIR)/luaengine.cpp \
 	$(FBNEO_BURNER_DIR)/luasav.cpp \
-	$(CAPCOM_DIR)/ctv_make.cpp \
-	$(PGM_DIR)/pgm_sprite_create.cpp \
 	$(FBNEO_INTERFACE_DIR)/audio/aud_interface.cpp \
 	$(ATARI_DIR)/WHATSNEW.txt.cpp
 
@@ -154,20 +180,146 @@ ifeq ($(LIGHT), 1)
 	# those drivers won't run well on those memory-constrained systems (3ds/wii/gc),
 	# so don't bother keeping them, we'll save memory
 	BURN_BLACKLIST += $(FBNEO_BURN_DEVICES_DIR)/tlc34076.cpp \
-		$(FBNEO_BURN_DEVICES_DIR)/epic12.cpp \
-		$(FBNEO_BURN_DEVICES_DIR)/serflash.cpp \
+		$(ATARI_DIR)/d_akkaarrh.cpp \
+		$(ATARI_DIR)/d_arcadecl.cpp \
+		$(ATARI_DIR)/d_atarig1.cpp \
+		$(ATARI_DIR)/d_badlands.cpp \
+		$(ATARI_DIR)/d_batman.cpp \
+		$(ATARI_DIR)/d_blstroid.cpp \
+		$(ATARI_DIR)/d_eprom.cpp \
+		$(ATARI_DIR)/d_gauntlet.cpp \
+		$(ATARI_DIR)/d_klax.cpp \
+		$(ATARI_DIR)/d_marblmd2.cpp \
+		$(ATARI_DIR)/d_missile.cpp \
+		$(ATARI_DIR)/d_offtwall.cpp \
+		$(ATARI_DIR)/d_rampart.cpp \
+		$(ATARI_DIR)/d_relief.cpp \
+		$(ATARI_DIR)/d_shuuz.cpp \
+		$(ATARI_DIR)/d_skullxbo.cpp \
+		$(ATARI_DIR)/d_thunderj.cpp \
+		$(ATARI_DIR)/d_toobin.cpp \
+		$(ATARI_DIR)/d_vindictr.cpp \
+		$(ATARI_DIR)/d_xybots.cpp \
+		$(CAPCOM_DIR)/cps.cpp \
+		$(CAPCOM_DIR)/cps2_crpt.cpp \
+		$(CAPCOM_DIR)/cps_config.cpp \
+		$(CAPCOM_DIR)/cps_draw.cpp \
+		$(CAPCOM_DIR)/cps_mem.cpp \
+		$(CAPCOM_DIR)/cps_obj.cpp \
+		$(CAPCOM_DIR)/cps_pal.cpp \
+		$(CAPCOM_DIR)/cps_run.cpp \
+		$(CAPCOM_DIR)/cps_rw.cpp \
+		$(CAPCOM_DIR)/cps_scr.cpp \
+		$(CAPCOM_DIR)/cpsr.cpp \
+		$(CAPCOM_DIR)/cpsrd.cpp \
+		$(CAPCOM_DIR)/cpst.cpp \
+		$(CAPCOM_DIR)/ctv.cpp \
+		$(CAPCOM_DIR)/ctv_make.cpp \
+		$(CAPCOM_DIR)/d_cps1.cpp \
+		$(CAPCOM_DIR)/d_cps2.cpp \
+		$(CAPCOM_DIR)/fcrash_snd.cpp \
+		$(CAPCOM_DIR)/kabuki.cpp \
+		$(CAPCOM_DIR)/ps.cpp \
+		$(CAPCOM_DIR)/ps_m.cpp \
+		$(CAPCOM_DIR)/ps_z.cpp \
+		$(CAPCOM_DIR)/qs.cpp \
+		$(CAPCOM_DIR)/qs_c.cpp \
+		$(CAPCOM_DIR)/qs_z.cpp \
+		$(CAPCOM_DIR)/sf2mdt_snd.cpp \
+		$(CAVE_DIR)/cave.cpp \
+		$(CAVE_DIR)/cave_palette.cpp \
+		$(CAVE_DIR)/cave_sprite.cpp \
+		$(CAVE_DIR)/cave_tile.cpp \
+		$(CAVE_DIR)/d_cv1k.cpp \
+		$(CAVE_DIR)/d_dodonpachi.cpp \
+		$(CAVE_DIR)/d_donpachi.cpp \
+		$(CAVE_DIR)/d_esprade.cpp \
+		$(CAVE_DIR)/d_feversos.cpp \
+		$(CAVE_DIR)/d_gaia.cpp \
+		$(CAVE_DIR)/d_guwange.cpp \
+		$(CAVE_DIR)/d_hotdogst.cpp \
+		$(CAVE_DIR)/d_korokoro.cpp \
+		$(CAVE_DIR)/d_mazinger.cpp \
+		$(CAVE_DIR)/d_metmqstr.cpp \
+		$(CAVE_DIR)/d_pwrinst2.cpp \
+		$(CAVE_DIR)/d_sailormn.cpp \
+		$(CAVE_DIR)/d_tjumpman.cpp \
+		$(CAVE_DIR)/d_uopoko.cpp \
+		$(CHANNELF_DIR)/d_channelf.cpp \
+		$(COLECO_DIR)/d_coleco.cpp \
+		$(CPS3_DIR)/cps3run.cpp \
+		$(CPS3_DIR)/cps3snd.cpp \
+		$(CPS3_DIR)/d_cps3.cpp \
+		$(DATAEAST_DIR)/d_actfancr.cpp \
+		$(DATAEAST_DIR)/d_backfire.cpp \
+		$(DATAEAST_DIR)/d_boogwing.cpp \
+		$(DATAEAST_DIR)/d_brkthru.cpp \
+		$(DATAEAST_DIR)/d_bwing.cpp \
+		$(DATAEAST_DIR)/d_cbuster.cpp \
+		$(DATAEAST_DIR)/d_chanbara.cpp \
+		$(DATAEAST_DIR)/d_cninja.cpp \
+		$(DATAEAST_DIR)/d_compgolf.cpp \
+		$(DATAEAST_DIR)/d_darkseal.cpp \
+		$(DATAEAST_DIR)/d_dassault.cpp \
+		$(DATAEAST_DIR)/d_dblewing.cpp \
+		$(DATAEAST_DIR)/d_dec0.cpp \
+		$(DATAEAST_DIR)/d_dec8.cpp \
+		$(DATAEAST_DIR)/d_deco156.cpp \
+		$(DATAEAST_DIR)/d_deco32.cpp \
+		$(DATAEAST_DIR)/d_decocass.cpp \
+		$(DATAEAST_DIR)/d_decomlc.cpp \
+		$(DATAEAST_DIR)/d_dietgogo.cpp \
+		$(DATAEAST_DIR)/d_dreambal.cpp \
+		$(DATAEAST_DIR)/d_funkyjet.cpp \
+		$(DATAEAST_DIR)/d_karnov.cpp \
+		$(DATAEAST_DIR)/d_kchamp.cpp \
+		$(DATAEAST_DIR)/d_lemmings.cpp \
+		$(DATAEAST_DIR)/d_liberate.cpp \
+		$(DATAEAST_DIR)/d_metlclsh.cpp \
+		$(DATAEAST_DIR)/d_pcktgal.cpp \
+		$(DATAEAST_DIR)/d_pktgaldx.cpp \
+		$(DATAEAST_DIR)/d_progolf.cpp \
+		$(DATAEAST_DIR)/d_rohga.cpp \
+		$(DATAEAST_DIR)/d_shootout.cpp \
+		$(DATAEAST_DIR)/d_sidepckt.cpp \
+		$(DATAEAST_DIR)/d_simpl156.cpp \
+		$(DATAEAST_DIR)/d_sshangha.cpp \
+		$(DATAEAST_DIR)/d_stadhero.cpp \
+		$(DATAEAST_DIR)/d_supbtime.cpp \
+		$(DATAEAST_DIR)/d_tumblep.cpp \
+		$(DATAEAST_DIR)/d_vaportra.cpp \
+		$(DATAEAST_DIR)/deco146.cpp \
+		$(DATAEAST_DIR)/deco16ic.cpp \
+		$(DATAEAST_DIR)/decobac06.cpp \
 		$(FBNEO_BURN_DEVICES_DIR)/bsmt2000.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/decobsmt.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/ds2404.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/epic12.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/intelfsh.cpp \
 		$(FBNEO_BURN_DEVICES_DIR)/mb87078.cpp \
 		$(FBNEO_BURN_DEVICES_DIR)/poly.cpp \
-		$(FBNEO_BURN_DEVICES_DIR)/sknsspr.cpp \
 		$(FBNEO_BURN_DEVICES_DIR)/qs1000.cpp \
-		$(FBNEO_BURN_DEVICES_DIR)/v3021.cpp \
-		$(FBNEO_BURN_DEVICES_DIR)/decobsmt.cpp \
-		$(FBNEO_BURN_DEVICES_DIR)/intelfsh.cpp \
-		$(FBNEO_BURN_DEVICES_DIR)/st0020.cpp \
-		$(FBNEO_BURN_DEVICES_DIR)/vdc.cpp \
-		$(FBNEO_BURN_DEVICES_DIR)/ds2404.cpp \
 		$(FBNEO_BURN_DEVICES_DIR)/rtc9701.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/serflash.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/sknsspr.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/st0020.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/v3021.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/vdc.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/atariic.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/atarijsa.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/atarimo.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/atarirle.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/atarivad.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/c169.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/gaelco_crypt.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/i4x00.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/k1ge.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/kaneko_tmap.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/nmk004.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/nmk112.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/pic8259.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/seibucop.cpp \
+		$(FBNEO_BURN_DEVICES_DIR)/timekpr.cpp \
 		$(FBNEO_BURN_SND_DIR)/burn_ymf271.cpp \
 		$(FBNEO_BURN_SND_DIR)/c352.cpp \
 		$(FBNEO_BURN_SND_DIR)/c6280.cpp \
@@ -179,70 +331,141 @@ ifeq ($(LIGHT), 1)
 		$(FBNEO_BURN_SND_DIR)/multipcm.cpp \
 		$(FBNEO_BURN_SND_DIR)/ymf271.cpp \
 		$(FBNEO_BURN_SND_DIR)/ymz770.cpp \
-		$(FBNEO_CPU_DIR)/adsp2100_intf.cpp \
-		$(FBNEO_CPU_DIR)/arm_intf.cpp \
-		$(FBNEO_CPU_DIR)/arm7_intf.cpp \
-		$(FBNEO_CPU_DIR)/h6280_intf.cpp \
-		$(FBNEO_CPU_DIR)/mips3_intf.cpp \
-		$(FBNEO_CPU_DIR)/pic16c5x_intf.cpp \
-		$(FBNEO_CPU_DIR)/tms34_intf.cpp \
-		$(ARM_CPU_DIR)/arm.cpp \
-		$(E132XS_CPU_DIR)/e132xs.cpp \
-		$(H6280_CPU_DIR)/h6280.cpp \
-		$(M377_CPU_DIR)/m37710.cpp \
-		$(MIPS3_CPU_DIR)/cop0.cpp \
-		$(MIPS3_CPU_DIR)/cop1.cpp \
-		$(MIPS3_CPU_DIR)/mips3.cpp \
-		$(PIC16C5X_CPU_DIR)/pic16c5x.cpp \
-		$(SH2_CPU_DIR)/sh2.cpp \
-		$(SH4_CPU_DIR)/sh4.cpp \
-		$(TMS34010_CPU_DIR)/tms34010.cpp \
-		$(UPD7725_CPU_DIR)/upd7725.cpp \
-		$(V60_CPU_DIR)/v60.cpp \
-		$(ARM7_CPU_DIR)/arm7.cpp \
-		$(ADSP2100_CPU_DIR)/adsp2100.cpp \
-		$(I386_CPU_DIR)/i386.cpp \
-		$(CAVE_DIR)/d_cv1k.cpp \
-		$(CPS3_DIR)/cps3run.cpp \
-		$(CPS3_DIR)/cps3snd.cpp \
-		$(CPS3_DIR)/d_cps3.cpp \
-		$(DATAEAST_DIR)/d_decomlc.cpp \
-		$(DATAEAST_DIR)/d_deco156.cpp \
-		$(DATAEAST_DIR)/d_simpl156.cpp \
-		$(DATAEAST_DIR)/d_deco32.cpp \
-		$(DATAEAST_DIR)/d_backfire.cpp \
-		$(DATAEAST_DIR)/d_vaportra.cpp \
-		$(DATAEAST_DIR)/d_tumblep.cpp \
-		$(DATAEAST_DIR)/d_supbtime.cpp \
-		$(DATAEAST_DIR)/d_funkyjet.cpp \
-		$(DATAEAST_DIR)/deco16ic.cpp \
-		$(DATAEAST_DIR)/d_dietgogo.cpp \
-		$(DATAEAST_DIR)/d_dec0.cpp \
-		$(DATAEAST_DIR)/d_dassault.cpp \
-		$(DATAEAST_DIR)/d_darkseal.cpp \
-		$(DATAEAST_DIR)/d_cninja.cpp \
-		$(DATAEAST_DIR)/d_boogwing.cpp \
-		$(DATAEAST_DIR)/d_cbuster.cpp \
-		$(DATAEAST_DIR)/d_actfancr.cpp \
-		$(DATAEAST_DIR)/d_boogwing.cpp \
-		$(DATAEAST_DIR)/d_dblewing.cpp \
-		$(DATAEAST_DIR)/d_dreambal.cpp \
-		$(DATAEAST_DIR)/d_rohga.cpp \
-		$(DATAEAST_DIR)/d_sshangha.cpp \
-		$(DATAEAST_DIR)/d_pktgaldx.cpp \
-		$(IREM_DIR)/d_m92.cpp \
+		$(FBNEO_BURN_SND_DIR)/burn_md2612.cpp \
+		$(FBNEO_BURN_SND_DIR)/burn_ymf262.cpp \
+		$(FBNEO_BURN_SND_DIR)/burn_ymf278b.cpp \
+		$(FBNEO_BURN_SND_DIR)/c140.cpp \
+		$(FBNEO_BURN_SND_DIR)/digitalk.cpp \
+		$(FBNEO_BURN_SND_DIR)/es8712.cpp \
+		$(FBNEO_BURN_SND_DIR)/gaelco.cpp \
+		$(FBNEO_BURN_SND_DIR)/k005289.cpp \
+		$(FBNEO_BURN_SND_DIR)/k007232.cpp \
+		$(FBNEO_BURN_SND_DIR)/k051649.cpp \
+		$(FBNEO_BURN_SND_DIR)/k053260.cpp \
+		$(FBNEO_BURN_SND_DIR)/k054539.cpp \
+		$(FBNEO_BURN_SND_DIR)/msm5232.cpp \
+		$(FBNEO_BURN_SND_DIR)/rf5c68.cpp \
+		$(FBNEO_BURN_SND_DIR)/saa1099.cpp \
+		$(FBNEO_BURN_SND_DIR)/segapcm.cpp \
+		$(FBNEO_BURN_SND_DIR)/t6w28.cpp \
+		$(FBNEO_BURN_SND_DIR)/x1010.cpp \
+		$(FBNEO_BURN_SND_DIR)/ymf262.cpp \
+		$(FBNEO_BURN_SND_DIR)/ymf278b.c \
+		$(FBNEO_BURN_SND_DIR)/ymz280b.cpp \
+		$(GALAXIAN_DIR)/d_galaxian.cpp \
+		$(GALAXIAN_DIR)/gal_gfx.cpp \
+		$(GALAXIAN_DIR)/gal_run.cpp \
+		$(GALAXIAN_DIR)/gal_sound.cpp \
+		$(GALAXIAN_DIR)/gal_stars.cpp \
 		$(IREM_DIR)/d_m107.cpp \
+		$(IREM_DIR)/d_m52.cpp \
+		$(IREM_DIR)/d_m57.cpp \
+		$(IREM_DIR)/d_m58.cpp \
+		$(IREM_DIR)/d_m62.cpp \
+		$(IREM_DIR)/d_m63.cpp \
+		$(IREM_DIR)/d_m72.cpp \
+		$(IREM_DIR)/d_m90.cpp \
+		$(IREM_DIR)/d_m92.cpp \
+		$(IREM_DIR)/d_vigilant.cpp \
+		$(IREM_DIR)/irem_cpu.cpp \
+		$(IREM_DIR)/irem_sound.cpp \
+		$(KONAMI_DIR)/d_88games.cpp \
+		$(KONAMI_DIR)/d_ajax.cpp \
+		$(KONAMI_DIR)/d_aliens.cpp \
+		$(KONAMI_DIR)/d_asterix.cpp \
+		$(KONAMI_DIR)/d_battlnts.cpp \
+		$(KONAMI_DIR)/d_bishi.cpp \
+		$(KONAMI_DIR)/d_bladestl.cpp \
+		$(KONAMI_DIR)/d_blockhl.cpp \
+		$(KONAMI_DIR)/d_bottom9.cpp \
+		$(KONAMI_DIR)/d_chqflag.cpp \
+		$(KONAMI_DIR)/d_circusc.cpp \
+		$(KONAMI_DIR)/d_combatsc.cpp \
+		$(KONAMI_DIR)/d_contra.cpp \
+		$(KONAMI_DIR)/d_crimfght.cpp \
+		$(KONAMI_DIR)/d_dbz.cpp \
+		$(KONAMI_DIR)/d_ddribble.cpp \
+		$(KONAMI_DIR)/d_divebomb.cpp \
+		$(KONAMI_DIR)/d_fastlane.cpp \
+		$(KONAMI_DIR)/d_finalzr.cpp \
+		$(KONAMI_DIR)/d_flkatck.cpp \
+		$(KONAMI_DIR)/d_gberet.cpp \
+		$(KONAMI_DIR)/d_gbusters.cpp \
 		$(KONAMI_DIR)/d_gijoe.cpp \
+		$(KONAMI_DIR)/d_gradius3.cpp \
+		$(KONAMI_DIR)/d_gyruss.cpp \
+		$(KONAMI_DIR)/d_hcastle.cpp \
+		$(KONAMI_DIR)/d_hexion.cpp \
+		$(KONAMI_DIR)/d_hyperspt.cpp \
+		$(KONAMI_DIR)/d_ironhors.cpp \
+		$(KONAMI_DIR)/d_jackal.cpp \
+		$(KONAMI_DIR)/d_jailbrek.cpp \
+		$(KONAMI_DIR)/d_junofrst.cpp \
+		$(KONAMI_DIR)/d_kontest.cpp \
+		$(KONAMI_DIR)/d_labyrunr.cpp \
+		$(KONAMI_DIR)/d_lethal.cpp \
+		$(KONAMI_DIR)/d_mainevt.cpp \
+		$(KONAMI_DIR)/d_megazone.cpp \
+		$(KONAMI_DIR)/d_mikie.cpp \
+		$(KONAMI_DIR)/d_mogura.cpp \
 		$(KONAMI_DIR)/d_moo.cpp \
 		$(KONAMI_DIR)/d_mystwarr.cpp \
+		$(KONAMI_DIR)/d_nemesis.cpp \
+		$(KONAMI_DIR)/d_pandoras.cpp \
+		$(KONAMI_DIR)/d_parodius.cpp \
+		$(KONAMI_DIR)/d_pingpong.cpp \
+		$(KONAMI_DIR)/d_pooyan.cpp \
+		$(KONAMI_DIR)/d_rockrage.cpp \
+		$(KONAMI_DIR)/d_rocnrope.cpp \
+		$(KONAMI_DIR)/d_rollerg.cpp \
+		$(KONAMI_DIR)/d_sbasketb.cpp \
+		$(KONAMI_DIR)/d_scotrsht.cpp \
+		$(KONAMI_DIR)/d_shaolins.cpp \
+		$(KONAMI_DIR)/d_simpsons.cpp \
+		$(KONAMI_DIR)/d_spy.cpp \
+		$(KONAMI_DIR)/d_surpratk.cpp \
+		$(KONAMI_DIR)/d_thunderx.cpp \
+		$(KONAMI_DIR)/d_timeplt.cpp \
+		$(KONAMI_DIR)/d_tmnt.cpp \
+		$(KONAMI_DIR)/d_tp84.cpp \
+		$(KONAMI_DIR)/d_trackfld.cpp \
+		$(KONAMI_DIR)/d_tutankhm.cpp \
+		$(KONAMI_DIR)/d_twin16.cpp \
+		$(KONAMI_DIR)/d_ultraman.cpp \
+		$(KONAMI_DIR)/d_vendetta.cpp \
+		$(KONAMI_DIR)/d_wecleman.cpp \
 		$(KONAMI_DIR)/d_xexex.cpp \
 		$(KONAMI_DIR)/d_xmen.cpp \
-		$(MIDWAY_DIR)/dcs2k.cpp \
+		$(KONAMI_DIR)/d_yiear.cpp \
+		$(KONAMI_DIR)/k007121.cpp \
+		$(KONAMI_DIR)/k007342_k007420.cpp \
+		$(KONAMI_DIR)/k007452.cpp \
+		$(KONAMI_DIR)/k051316.cpp \
+		$(KONAMI_DIR)/k051733.cpp \
+		$(KONAMI_DIR)/k051960.cpp \
+		$(KONAMI_DIR)/k052109.cpp \
+		$(KONAMI_DIR)/k053245.cpp \
+		$(KONAMI_DIR)/k053247.cpp \
+		$(KONAMI_DIR)/k053250.cpp \
+		$(KONAMI_DIR)/k053251.cpp \
+		$(KONAMI_DIR)/k053936.cpp \
+		$(KONAMI_DIR)/k054000.cpp \
+		$(KONAMI_DIR)/k054338.cpp \
+		$(KONAMI_DIR)/k055555.cpp \
+		$(KONAMI_DIR)/k056832.cpp \
+		$(KONAMI_DIR)/konamigx.cpp \
+		$(KONAMI_DIR)/konamiic.cpp \
+		$(MD_DIR)/d_mdarcbl.cpp \
+		$(MD_DIR)/d_megadrive.cpp \
+		$(MD_DIR)/mdeeprom.cpp \
+		$(MD_DIR)/megadrive.cpp \
+		$(MD_DIR)/stm95.cpp \
 		$(MIDWAY_DIR)/d_kinst.cpp \
 		$(MIDWAY_DIR)/d_tunit.cpp \
 		$(MIDWAY_DIR)/d_wunit.cpp \
 		$(MIDWAY_DIR)/d_xunit.cpp \
 		$(MIDWAY_DIR)/d_yunit.cpp \
+		$(MIDWAY_DIR)/dcs2k.cpp \
 		$(MIDWAY_DIR)/ide.cpp \
 		$(MIDWAY_DIR)/midtunit.cpp \
 		$(MIDWAY_DIR)/midwayic.cpp \
@@ -252,6 +475,14 @@ ifeq ($(LIGHT), 1)
 		$(MIDWAY_DIR)/williams_cvsd.cpp \
 		$(MIDWAY_DIR)/yawdim_sound.cpp \
 		$(MSX_DIR)/d_msx.cpp \
+		$(NEOGEO_DIR)/d_neogeo.cpp \
+		$(NEOGEO_DIR)/neogeo.cpp \
+		$(NEOGEO_DIR)/neo_decrypt.cpp \
+		$(NEOGEO_DIR)/neo_palette.cpp \
+		$(NEOGEO_DIR)/neo_run.cpp \
+		$(NEOGEO_DIR)/neo_sprite.cpp \
+		$(NEOGEO_DIR)/neo_text.cpp \
+		$(NEOGEO_DIR)/neo_upd4990a.cpp \
 		$(NES_DIR)/d_nes.cpp \
 		$(PCE_DIR)/d_pce.cpp \
 		$(PCE_DIR)/pce.cpp \
@@ -264,55 +495,281 @@ ifeq ($(LIGHT), 1)
 		$(PGM_DIR)/pgm_crypt.cpp \
 		$(PGM_DIR)/pgm_draw.cpp \
 		$(PGM_DIR)/pgm_run.cpp \
+		$(PGM_DIR)/pgm_sprite_create.cpp \
 		$(PRE90S_DIR)/d_exterm.cpp \
 		$(PRE90S_DIR)/d_madmotor.cpp \
+		$(PRE90S_DIR)/d_matmania.cpp \
+		$(PRE90S_DIR)/d_mitchell.cpp \
+		$(PRE90S_DIR)/d_pitnrun.cpp \
+		$(PRE90S_DIR)/d_stfight.cpp \
+		$(PRE90S_DIR)/d_tail2nose.cpp \
+		$(PRE90S_DIR)/d_travrusa.cpp \
+		$(PRE90S_DIR)/d_xain.cpp \
+		$(PSIKYO_DIR)/d_psikyo.cpp \
 		$(PSIKYO_DIR)/d_psikyo4.cpp \
 		$(PSIKYO_DIR)/d_psikyosh.cpp \
+		$(PSIKYO_DIR)/psikyo_palette.cpp \
+		$(PSIKYO_DIR)/psikyo_sprite.cpp \
+		$(PSIKYO_DIR)/psikyo_tile.cpp \
 		$(PSIKYO_DIR)/psikyosh_render.cpp \
+		$(PST90S_DIR)/d_1945kiii.cpp \
+		$(PST90S_DIR)/d_20pacgal.cpp \
+		$(PST90S_DIR)/d_3x3puzzl.cpp \
+		$(PST90S_DIR)/d_aerofgt.cpp \
+		$(PST90S_DIR)/d_airbustr.cpp \
+		$(PST90S_DIR)/d_aquarium.cpp \
+		$(PST90S_DIR)/d_artmagic.cpp \
+		$(PST90S_DIR)/d_bestleag.cpp \
+		$(PST90S_DIR)/d_bigstrkb.cpp \
+		$(PST90S_DIR)/d_blackt96.cpp \
+		$(PST90S_DIR)/d_blmbycar.cpp \
+		$(PST90S_DIR)/d_bloodbro.cpp \
+		$(PST90S_DIR)/d_bloodbro_ms.cpp \
+		$(PST90S_DIR)/d_btoads.cpp \
+		$(PST90S_DIR)/d_cischeat.cpp \
+		$(PST90S_DIR)/d_crospang.cpp \
+		$(PST90S_DIR)/d_crshrace.cpp \
+		$(PST90S_DIR)/d_cultures.cpp \
+		$(PST90S_DIR)/d_dcon.cpp \
+		$(PST90S_DIR)/d_ddragon3.cpp \
+		$(PST90S_DIR)/d_deniam.cpp \
+		$(PST90S_DIR)/d_discoboy.cpp \
+		$(PST90S_DIR)/d_diverboy.cpp \
+		$(PST90S_DIR)/d_dooyong.cpp \
+		$(PST90S_DIR)/d_dreamwld.cpp \
+		$(PST90S_DIR)/d_drgnmst.cpp \
+		$(PST90S_DIR)/d_drtomy.cpp \
+		$(PST90S_DIR)/d_egghunt.cpp \
+		$(PST90S_DIR)/d_eolith.cpp \
+		$(PST90S_DIR)/d_eolith16.cpp \
+		$(PST90S_DIR)/d_esd16.cpp \
+		$(PST90S_DIR)/d_f-32.cpp \
+		$(PST90S_DIR)/d_f1gp.cpp \
+		$(PST90S_DIR)/d_funybubl.cpp \
+		$(PST90S_DIR)/d_fuukifg2.cpp \
+		$(PST90S_DIR)/d_fuukifg3.cpp \
+		$(PST90S_DIR)/d_gaelco.cpp \
+		$(PST90S_DIR)/d_gaelco2.cpp \
+		$(PST90S_DIR)/d_gaiden.cpp \
+		$(PST90S_DIR)/d_galpani3.cpp \
+		$(PST90S_DIR)/d_galpanic.cpp \
+		$(PST90S_DIR)/d_galspnbl.cpp \
+		$(PST90S_DIR)/d_glass.cpp \
+		$(PST90S_DIR)/d_go2000.cpp \
+		$(PST90S_DIR)/d_goori.cpp \
+		$(PST90S_DIR)/d_gotcha.cpp \
+		$(PST90S_DIR)/d_gstream.cpp \
+		$(PST90S_DIR)/d_gumbo.cpp \
+		$(PST90S_DIR)/d_hyperpac.cpp \
+		$(PST90S_DIR)/d_hyprduel.cpp \
+		$(PST90S_DIR)/d_inufuku.cpp \
+		$(PST90S_DIR)/d_itech32.cpp \
+		$(PST90S_DIR)/d_jchan.cpp \
+		$(PST90S_DIR)/d_kaneko16.cpp \
+		$(PST90S_DIR)/d_kickgoal.cpp \
+		$(PST90S_DIR)/d_ladyfrog.cpp \
+		$(PST90S_DIR)/d_legionna.cpp \
+		$(PST90S_DIR)/d_limenko.cpp \
+		$(PST90S_DIR)/d_lordgun.cpp \
+		$(PST90S_DIR)/d_macrossp.cpp \
+		$(PST90S_DIR)/d_mcatadv.cpp \
+		$(PST90S_DIR)/d_metro.cpp \
+		$(PST90S_DIR)/d_midas.cpp \
+		$(PST90S_DIR)/d_mirage.cpp \
+		$(PST90S_DIR)/d_missb2.cpp \
+		$(PST90S_DIR)/d_mosaic.cpp \
 		$(PST90S_DIR)/d_ms32.cpp \
-		$(PST90S_DIR)/d_ssv.cpp \
+		$(PST90S_DIR)/d_mugsmash.cpp \
+		$(PST90S_DIR)/d_mwarr.cpp \
 		$(PST90S_DIR)/d_namcona1.cpp \
 		$(PST90S_DIR)/d_namconb1.cpp \
-		$(PST90S_DIR)/d_btoads.cpp \
-		$(PST90S_DIR)/d_artmagic.cpp \
-		$(PST90S_DIR)/d_eolith16.cpp \
-		$(PST90S_DIR)/d_gstream.cpp \
-		$(PST90S_DIR)/d_vegaeo.cpp \
-		$(PST90S_DIR)/d_limenko.cpp \
+		$(PST90S_DIR)/d_namcos2.cpp \
+		$(PST90S_DIR)/d_news.cpp \
+		$(PST90S_DIR)/d_ngp.cpp \
+		$(PST90S_DIR)/d_nmg5.cpp \
+		$(PST90S_DIR)/d_nmk16.cpp \
+		$(PST90S_DIR)/d_ohmygod.cpp \
+		$(PST90S_DIR)/d_oneshot.cpp \
+		$(PST90S_DIR)/d_onetwo.cpp \
 		$(PST90S_DIR)/d_pasha2.cpp \
-		$(PST90S_DIR)/d_eolith.cpp \
-		$(PST90S_DIR)/d_x2222.cpp \
-		$(PST90S_DIR)/d_f-32.cpp \
-		$(PST90S_DIR)/d_vamphalf.cpp \
-		$(PST90S_DIR)/d_suprnova.cpp \
-		$(PST90S_DIR)/d_drgnmst.cpp \
-		$(PST90S_DIR)/d_blackt96.cpp \
-		$(PST90S_DIR)/d_seibuspi.cpp \
-		$(PST90S_DIR)/d_kickgoal.cpp \
+		$(PST90S_DIR)/d_pass.cpp \
+		$(PST90S_DIR)/d_patapata.cpp \
+		$(PST90S_DIR)/d_pipedrm.cpp \
+		$(PST90S_DIR)/d_pirates.cpp \
+		$(PST90S_DIR)/d_pkscram.cpp \
 		$(PST90S_DIR)/d_playmark.cpp \
-		$(PST90S_DIR)/d_fuukifg3.cpp \
+		$(PST90S_DIR)/d_powerbal.cpp \
+		$(PST90S_DIR)/d_powerins.cpp \
+		$(PST90S_DIR)/d_ppmast93.cpp \
+		$(PST90S_DIR)/d_pushman.cpp \
 		$(PST90S_DIR)/d_rabbit.cpp \
-		$(PST90S_DIR)/d_itech32.cpp \
-		$(PST90S_DIR)/d_dreamwld.cpp \
-		$(PST90S_DIR)/d_macrossp.cpp \
-		$(PST90S_DIR)/d_jchan.cpp \
-		$(PST90S_DIR)/d_galpani3.cpp \
-		$(PST90S_DIR)/d_mirage.cpp \
+		$(PST90S_DIR)/d_raiden.cpp \
+		$(PST90S_DIR)/d_raiden2.cpp \
+		$(PST90S_DIR)/d_sandscrp.cpp \
+		$(PST90S_DIR)/d_sderby.cpp \
+		$(PST90S_DIR)/d_seibuspi.cpp \
+		$(PST90S_DIR)/d_seta.cpp \
 		$(PST90S_DIR)/d_seta2.cpp \
+		$(PST90S_DIR)/d_shadfrce.cpp \
+		$(PST90S_DIR)/d_shangha3.cpp \
+		$(PST90S_DIR)/d_silkroad.cpp \
+		$(PST90S_DIR)/d_silvmil.cpp \
+		$(PST90S_DIR)/d_speedspn.cpp \
+		$(PST90S_DIR)/d_ssv.cpp \
+		$(PST90S_DIR)/d_suna16.cpp \
+		$(PST90S_DIR)/d_supduck.cpp \
+		$(PST90S_DIR)/d_suprnova.cpp \
+		$(PST90S_DIR)/d_taotaido.cpp \
+		$(PST90S_DIR)/d_targeth.cpp \
+		$(PST90S_DIR)/d_tecmo16.cpp \
+		$(PST90S_DIR)/d_tecmosys.cpp \
+		$(PST90S_DIR)/d_tetrisp2.cpp \
+		$(PST90S_DIR)/d_thoop2.cpp \
+		$(PST90S_DIR)/d_topdrive.cpp \
+		$(PST90S_DIR)/d_tumbleb.cpp \
+		$(PST90S_DIR)/d_unico.cpp \
+		$(PST90S_DIR)/d_vamphalf.cpp \
+		$(PST90S_DIR)/d_vegaeo.cpp \
+		$(PST90S_DIR)/d_welltris.cpp \
+		$(PST90S_DIR)/d_wrally.cpp \
+		$(PST90S_DIR)/d_wwfwfest.cpp \
+		$(PST90S_DIR)/d_x2222.cpp \
+		$(PST90S_DIR)/d_xorworld.cpp \
+		$(PST90S_DIR)/d_yunsun16.cpp \
+		$(PST90S_DIR)/d_yunsung8.cpp \
+		$(PST90S_DIR)/d_zerozone.cpp \
+		$(SEGA_DIR)/d_angelkds.cpp \
+		$(SEGA_DIR)/d_appoooh.cpp \
+		$(SEGA_DIR)/d_bankp.cpp \
+		$(SEGA_DIR)/d_dotrikun.cpp \
+		$(SEGA_DIR)/d_hangon.cpp \
+		$(SEGA_DIR)/d_outrun.cpp \
+		$(SEGA_DIR)/d_segac2.cpp \
+		$(SEGA_DIR)/d_segae.cpp \
+		$(SEGA_DIR)/d_segag80v.cpp \
 		$(SEGA_DIR)/d_segas32.cpp \
+		$(SEGA_DIR)/d_suprloco.cpp \
+		$(SEGA_DIR)/d_sys1.cpp \
+		$(SEGA_DIR)/d_sys16a.cpp \
+		$(SEGA_DIR)/d_sys16b.cpp \
+		$(SEGA_DIR)/d_sys18.cpp \
 		$(SEGA_DIR)/d_sys24.cpp \
+		$(SEGA_DIR)/d_turbo.cpp \
+		$(SEGA_DIR)/d_xbrd.cpp \
+		$(SEGA_DIR)/d_ybrd.cpp \
+		$(SEGA_DIR)/d_zaxxon.cpp \
+		$(SEGA_DIR)/fd1089.cpp \
+		$(SEGA_DIR)/fd1094.cpp \
+		$(SEGA_DIR)/fd1094_intf.cpp \
+		$(SEGA_DIR)/genesis_vid.cpp \
+		$(SEGA_DIR)/sega_315_5195.cpp \
+		$(SEGA_DIR)/sys16_fd1094.cpp \
+		$(SEGA_DIR)/sys16_gfx.cpp \
+		$(SEGA_DIR)/sys16_run.cpp \
+		$(SEGA_DIR)/usb_snd.cpp		 \
+		$(SG1000_DIR)/d_sg1000.cpp \
+		$(SMS_DIR)/d_sms.cpp \
+		$(SMS_DIR)/sms.cpp \
+		$(SMS_DIR)/smsfmintf.cpp \
+		$(SMS_DIR)/smspio.cpp \
+		$(SMS_DIR)/smsrender.cpp \
+		$(SMS_DIR)/smssound.cpp \
+		$(SMS_DIR)/smssystem.cpp \
+		$(SMS_DIR)/smstms.cpp \
+		$(SMS_DIR)/smsvdp.cpp \
 		$(SPECTRUM_DIR)/d_spectrum.cpp \
-		$(TAITO_DIR)/d_slapshot.cpp \
-		$(TAITO_DIR)/d_superchs.cpp \
-		$(TAITO_DIR)/d_taitof3.cpp \
-		$(TAITO_DIR)/d_taitof2.cpp \
-		$(TAITO_DIR)/d_taitoz.cpp \
-		$(TAITO_DIR)/taitof3_snd.cpp \
-		$(TAITO_DIR)/taitof3_video.cpp \
+		$(TAITO_DIR)/d_arkanoid.cpp \
+		$(TAITO_DIR)/d_ashnojoe.cpp \
+		$(TAITO_DIR)/d_asuka.cpp \
+		$(TAITO_DIR)/d_bublbobl.cpp \
+		$(TAITO_DIR)/d_buggychl.cpp \
+		$(TAITO_DIR)/d_chaknpop.cpp \
+		$(TAITO_DIR)/d_crbaloon.cpp \
+		$(TAITO_DIR)/d_cyclemb.cpp \
+		$(TAITO_DIR)/d_darius2.cpp \
+		$(TAITO_DIR)/d_darkmist.cpp \
+		$(TAITO_DIR)/d_exzisus.cpp \
+		$(TAITO_DIR)/d_flstory.cpp \
+		$(TAITO_DIR)/d_galastrm.cpp \
+		$(TAITO_DIR)/d_gladiatr.cpp \
 		$(TAITO_DIR)/d_groundfx.cpp \
 		$(TAITO_DIR)/d_gunbuster.cpp \
+		$(TAITO_DIR)/d_halleys.cpp \
+		$(TAITO_DIR)/d_jollyjgr.cpp \
+		$(TAITO_DIR)/d_ksayakyu.cpp \
+		$(TAITO_DIR)/d_lkage.cpp \
+		$(TAITO_DIR)/d_lsasquad.cpp \
+		$(TAITO_DIR)/d_mexico86.cpp \
+		$(TAITO_DIR)/d_minivdr.cpp \
+		$(TAITO_DIR)/d_msisaac.cpp \
+		$(TAITO_DIR)/d_nycaptor.cpp \
+		$(TAITO_DIR)/d_othunder.cpp \
+		$(TAITO_DIR)/d_qix.cpp \
+		$(TAITO_DIR)/d_retofinv.cpp \
+		$(TAITO_DIR)/d_rollrace.cpp \
+		$(TAITO_DIR)/d_slapshot.cpp \
+		$(TAITO_DIR)/d_ssrj.cpp \
+		$(TAITO_DIR)/d_superchs.cpp \
+		$(TAITO_DIR)/d_superqix.cpp \
+		$(TAITO_DIR)/d_supridr.cpp \
+		$(TAITO_DIR)/d_taitob.cpp \
+		$(TAITO_DIR)/d_taitof2.cpp \
+		$(TAITO_DIR)/d_taitof3.cpp \
+		$(TAITO_DIR)/d_taitoh.cpp \
+		$(TAITO_DIR)/d_taitol.cpp \
+		$(TAITO_DIR)/d_taitomisc.cpp \
+		$(TAITO_DIR)/d_taitosj.cpp \
+		$(TAITO_DIR)/d_taitox.cpp \
+		$(TAITO_DIR)/d_taitoz.cpp \
+		$(TAITO_DIR)/d_tnzs.cpp \
 		$(TAITO_DIR)/d_undrfire.cpp \
-		$(TAITO_DIR)/d_galastrm.cpp
+		$(TAITO_DIR)/d_wyvernf0.cpp \
+		$(TAITO_DIR)/pc080sn.cpp \
+		$(TAITO_DIR)/pc090oj.cpp \
+		$(TAITO_DIR)/taito.cpp \
+		$(TAITO_DIR)/taito_ic.cpp \
+		$(TAITO_DIR)/taito_m68705.cpp \
+		$(TAITO_DIR)/taitof3_snd.cpp \
+		$(TAITO_DIR)/taitof3_video.cpp \
+		$(TAITO_DIR)/tc0100scn.cpp \
+		$(TAITO_DIR)/tc0110pcr.cpp \
+		$(TAITO_DIR)/tc0140syt.cpp \
+		$(TAITO_DIR)/tc0150rod.cpp \
+		$(TAITO_DIR)/tc0180vcu.cpp \
+		$(TAITO_DIR)/tc0220ioc.cpp \
+		$(TAITO_DIR)/tc0280grd.cpp \
+		$(TAITO_DIR)/tc0360pri.cpp \
+		$(TAITO_DIR)/tc0480scp.cpp \
+		$(TAITO_DIR)/tc0510nio.cpp \
+		$(TAITO_DIR)/tc0640fio.cpp \
+		$(TAITO_DIR)/tnzs_prot.cpp \
+		$(TOAPLAN_DIR)/d_batrider.cpp \
+		$(TOAPLAN_DIR)/d_batsugun.cpp \
+		$(TOAPLAN_DIR)/d_battleg.cpp \
+		$(TOAPLAN_DIR)/d_bbakraid.cpp \
+		$(TOAPLAN_DIR)/d_dogyuun.cpp \
+		$(TOAPLAN_DIR)/d_enmadaio.cpp \
+		$(TOAPLAN_DIR)/d_fixeight.cpp \
+		$(TOAPLAN_DIR)/d_ghox.cpp \
+		$(TOAPLAN_DIR)/d_kbash.cpp \
+		$(TOAPLAN_DIR)/d_kbash2.cpp \
+		$(TOAPLAN_DIR)/d_mahoudai.cpp \
+		$(TOAPLAN_DIR)/d_pipibibs.cpp \
+		$(TOAPLAN_DIR)/d_shippumd.cpp \
+		$(TOAPLAN_DIR)/d_slapfght.cpp \
+		$(TOAPLAN_DIR)/d_snowbro2.cpp \
+		$(TOAPLAN_DIR)/d_tekipaki.cpp \
+		$(TOAPLAN_DIR)/d_toaplan1.cpp \
+		$(TOAPLAN_DIR)/d_truxton2.cpp \
+		$(TOAPLAN_DIR)/d_twincobr.cpp \
+		$(TOAPLAN_DIR)/d_vfive.cpp \
+		$(TOAPLAN_DIR)/d_wardner.cpp \
+		$(TOAPLAN_DIR)/toa_bcu2.cpp \
+		$(TOAPLAN_DIR)/toa_extratext.cpp \
+		$(TOAPLAN_DIR)/toa_gp9001.cpp \
+		$(TOAPLAN_DIR)/toa_palette.cpp \
+		$(TOAPLAN_DIR)/toaplan.cpp \
+		$(TOAPLAN_DIR)/toaplan1.cpp \
 	FBNEO_DEFINES += -DLIGHT -DNO_NES
 endif
 

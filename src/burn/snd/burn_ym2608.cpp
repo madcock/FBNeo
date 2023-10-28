@@ -365,7 +365,11 @@ INT32 BurnYM2608Init(INT32 nClockFrequency, UINT8* YM2608ADPCMROM, INT32* nYM260
 		BurnYM2608Update = YM2608UpdateNormal;
 	}
 
+#if !defined(SF2000)
 	if (!nBurnYM2608SoundRate) nBurnYM2608SoundRate = 44100;
+#else
+	if (!nBurnYM2608SoundRate) nBurnYM2608SoundRate = 11025;
+#endif
 
 	AY8910InitYM(0, nClockFrequency, nBurnYM2608SoundRate, NULL, NULL, NULL, NULL, BurnAY8910UpdateRequest);
 	YM2608Init(1, timer_chipbase, nClockFrequency, nBurnYM2608SoundRate, (void**)(&YM2608ADPCMROM), nYM2608ADPCMSize, YM2608IROM, &BurnOPNTimerCallback, IRQCallback);

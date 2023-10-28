@@ -291,7 +291,11 @@ INT32 BurnYM3812Init(INT32 num, INT32 nClockFrequency, OPL_IRQHANDLER IRQCallbac
 		BurnYM3812Update = YM3812UpdateNormal;
 	}
 
+#if !defined(SF2000)
 	if (!nBurnYM3812SoundRate) nBurnYM3812SoundRate = 44100;
+#else
+	if (!nBurnYM3812SoundRate) nBurnYM3812SoundRate = 11025;
+#endif
 
 	YM3812Init(num, nClockFrequency, nBurnYM3812SoundRate);
 	YM3812SetIRQHandler(0, IRQCallback, 0);

@@ -616,7 +616,11 @@ INT32 BurnYM2203Init(INT32 num, INT32 nClockFrequency, FM_IRQHANDLER IRQCallback
 		BurnYM2203Update = YM2203UpdateNormal;
 	}
 
+#if !defined(SF2000)
 	if (!nBurnYM2203SoundRate) nBurnYM2203SoundRate = 44100;
+#else
+	if (!nBurnYM2203SoundRate) nBurnYM2203SoundRate = 11025;
+#endif
 
 	for (INT32 i = 0; i < num; i++) {
 		AY8910InitYM(i, nClockFrequency, nBurnYM2203SoundRate, NULL, NULL, NULL, NULL, BurnAY8910UpdateRequest);

@@ -983,8 +983,10 @@ static bool open_archive()
 			ZipClose();
 		}
 
+#if !defined(SF2000)
 		if (bIsNeogeoCartGame)
 			set_neo_system_bios();
+#endif
 
 		// Going over every rom to see if they are properly loaded before we continue ...
 		bool ret = true;
@@ -1055,6 +1057,7 @@ int CreateAllDatfiles()
 	snprintf_nowarn(szFilename, sizeof(szFilename), "%s%c%s (%s).dat", DAT_FOLDER, PATH_DEFAULT_SLASH_C(), APP_TITLE, "ClrMame Pro XML, Arcade only");
 	create_datfile(szFilename, DAT_ARCADE_ONLY);
 
+#if !defined(SF2000)
 	snprintf_nowarn(szFilename, sizeof(szFilename), "%s%c%s (%s).dat", DAT_FOLDER, PATH_DEFAULT_SLASH_C(), APP_TITLE, "ClrMame Pro XML, Megadrive only");
 	create_datfile(szFilename, DAT_MEGADRIVE_ONLY);
 
@@ -1101,6 +1104,7 @@ int CreateAllDatfiles()
 	snprintf_nowarn(szFilename, sizeof(szFilename), "%s%c%s (%s).dat", DAT_FOLDER, PATH_DEFAULT_SLASH_C(), APP_TITLE, "ClrMame Pro XML, ZX Spectrum Games only");
 	create_datfile(szFilename, DAT_SPECTRUM_ONLY);
 #endif
+#endif //SF2000
 
 	return nRet;
 }
@@ -1178,8 +1182,10 @@ void retro_reset()
 	apply_cheats_from_variables();
 
 	// restore the NeoSystem because it was changed during the gameplay
+#if !defined(SF2000)
 	if (bIsNeogeoCartGame)
 		set_neo_system_bios();
+#endif
 
 	pBurnDraw = NULL;
 	ForceFrameStep();
@@ -1195,6 +1201,7 @@ void retro_reset()
 
 static void VideoBufferInit()
 {
+#if !defined(SF2000)
 	size_t nSize = nGameWidth * nGameHeight * nBurnBpp;
 	if (pVidImage)
 		pVidImage = (UINT8*)realloc(pVidImage, nSize);
@@ -1202,6 +1209,25 @@ static void VideoBufferInit()
 		pVidImage = (UINT8*)malloc(nSize);
 	if (pVidImage)
 		memset(pVidImage, 0, nSize);
+#else
+	HandleMessage(RETRO_LOG_INFO, "[FBNeo] VideoBufferInit(Width:%d, Height:%d, BPP:%d)\n", nGameWidth, nGameHeight, nBurnBpp);
+	size_t nSize = nGameWidth * nGameHeight * nBurnBpp;
+	if (pVidImage)
+	{
+		HandleMessage(RETRO_LOG_INFO, "[FBNeo] realloc(%d) \n", nSize);
+		pVidImage = (UINT8*)realloc(pVidImage, nSize);
+	}
+	else
+	{
+		HandleMessage(RETRO_LOG_INFO, "[FBNeo] malloc(%d) \n", nSize);
+		pVidImage = (UINT8*)malloc(nSize);
+	}
+	if (pVidImage)
+	{
+		HandleMessage(RETRO_LOG_INFO, "[FBNeo] memset(%d) \n", nSize);
+		memset(pVidImage, 0, nSize);
+	}
+#endif
 }
 
 void retro_run()
@@ -1331,9 +1357,13 @@ void retro_run()
 		// current frame will be corrupted, let's dupe instead
 		pBurnDraw = NULL;
 	}
-
+#if !defined(SF2000)
 	video_cb(pBurnDraw, nGameWidth, nGameHeight, nBurnPitch);
-
+#else
+	if (pBurnDraw != NULL) {
+		video_cb(pBurnDraw, nGameWidth, nGameHeight, nBurnPitch);
+	}
+#endif
 	bool updated = false;
 	if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE_UPDATE, &updated) && updated)
 	{
@@ -1402,7 +1432,14 @@ void retro_get_system_av_info(struct retro_system_av_info *info)
 	struct retro_system_timing timing = { (nBurnFPS / 100.0), (nBurnFPS / 100.0) * nAudSegLen };
 
 	HandleMessage(RETRO_LOG_INFO, "[FBNeo] Timing set to %f Hz\n", timing.fps);
-
+#if defined(SF2000)
+	HandleMessage(RETRO_LOG_INFO, "[FBNeo] Samplerate set to %f\n", timing.sample_rate);
+	
+	//timing.fps = 6000;
+	timing.sample_rate = 11025;
+	//HandleMessage(RETRO_LOG_INFO, "[FBNeo] FORCING Timing to %f Hz\n", timing.fps);
+	HandleMessage(RETRO_LOG_INFO, "[FBNeo] FORCING Samplerate to %f\n", timing.sample_rate);
+#endif
 	info->geometry = geom;
 	info->timing   = timing;
 }
@@ -1449,6 +1486,9 @@ INT32 SetBurnHighCol(INT32 nDepth)
 		{
 			BurnHighCol = HighCol32;
 			nBurnBpp = 4;
+#if defined(SF2000)
+			HandleMessage(RETRO_LOG_INFO, "[FBNeo] RETRO_PIXEL_FORMAT_XRGB8888\n");
+#endif
 			return 0;
 		}
 	}
@@ -1458,6 +1498,9 @@ INT32 SetBurnHighCol(INT32 nDepth)
 	{
 		BurnHighCol = HighCol16;
 		nBurnBpp = 2;
+#if defined(SF2000)
+		HandleMessage(RETRO_LOG_INFO, "[FBNeo] RETRO_PIXEL_FORMAT_RGB565\n");
+#endif
 		return 0;
 	}
 
@@ -1892,8 +1935,10 @@ static bool retro_load_game_common()
 		HandleMessage(RETRO_LOG_INFO, "[FBNeo] Applied dipswitches from core options\n");
 
 		// Override the NeoGeo bios DIP Switch by the main one (for the moment)
+#if !defined(SF2000)
 		if (bIsNeogeoCartGame)
 			set_neo_system_bios();
+#endif
 
 		// Libretro doesn't want the refresh rate to be limited to 60hz
 		bSpeedLimit60hz = false;
@@ -1921,8 +1966,10 @@ static bool retro_load_game_common()
 		AudioBufferInit(nBurnSoundRate, nBurnFPS);
 		HandleMessage(RETRO_LOG_INFO, "[FBNeo] Adjusted audio buffer to match driver's refresh rate (%f Hz)\n", (nBurnFPS/100.0));
 
+#if !defined(SF2000)
 		// Expose Ram for cheevos/cheats support
 		CheevosInit();
+#endif
 
 		// Loading minimal savestate (handle some machine settings)
 		snprintf_nowarn (g_autofs_path, sizeof(g_autofs_path), "%s%cfbneo%c%s.fs", g_save_dir, PATH_DEFAULT_SLASH_C(), PATH_DEFAULT_SLASH_C(), BurnDrvGetTextA(DRV_NAME));
@@ -1976,7 +2023,11 @@ static bool retro_load_game_common()
 	return true;
 
 end:
+#if !defined(SF2000)
 	nBurnSoundRate = 48000;
+#else
+	nBurnSoundRate = 11025;
+#endif
 	nBurnFPS = 6000;
 	nBurnDrvActive = ~0U;
 	AudioBufferInit(nBurnSoundRate, nBurnFPS);
@@ -2161,7 +2212,9 @@ void retro_unload_game(void)
 		pRomFind = NULL;
 	}
 	InputExit();
+#if !defined(SF2000)
 	CheevosExit();
+#endif
 }
 
 unsigned retro_get_region() { return RETRO_REGION_NTSC; }

@@ -331,7 +331,11 @@ INT32 BurnYM2612Init(INT32 num, INT32 nClockFrequency, FM_IRQHANDLER IRQCallback
 		BurnYM2612Update = YM2612UpdateNormal;
 	}
 
+#if !defined(SF2000)
 	if (!nBurnYM2612SoundRate) nBurnYM2612SoundRate = 44100;
+#else
+	if (!nBurnYM2612SoundRate) nBurnYM2612SoundRate = 11025;
+#endif
 
 	YM2612Init(num, timer_chipbase, nClockFrequency, nBurnYM2612SoundRate, &BurnOPNTimerCallback, IRQCallback);
 
